@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <style>
+        @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@100;400;500;600;900&display=swap');
+        body{
+            
+            background-image: linear-gradient(to top right, rgba(2, 89, 123, 0.83), rgba(149, 207, 230, 0.79));
+            /* background-image: linear-gradient(to top right, rgba(0, 26, 46, 0.83), rgba(86, 106, 122, 0.79)); */
+            background-repeat: no-repeat; 
+            background-size: cover;
+            height: 98vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-family: "Montserrat Alternates", sans-serif;
+            font-weight: 500;
+            font-style: normal;
+        }
+        #titleContent{
+            transform: rotate(-90deg) translate(6vh, -30vh);
+            font-size: 90px;
+            display: flex;
+            justify-content: flex-start;
+            align-items: flex-start;
+            position: absolute;
+            left: 0;
+            color: rgba(255, 255, 255, 0.669);
+            font-weight: 900;
+        }
+        #container{
+            width: 24%;
+            height: 85vh;
+            border-radius: 40px;
+            background: linear-gradient(to top left, rgba(166, 166, 166, 0.404), rgba(255, 255, 255, 0.216));
+            /* background: linear-gradient(to top left, rgba(0, 0, 0, 0.478), rgba(91, 91, 91, 0.487)); */
+            
+            box-shadow: rgba(0, 0, 0, 0.07) 0px 1px 2px, rgba(0, 0, 0, 0.07) 0px 2px 4px, rgba(0, 0, 0, 0.07) 0px 4px 8px, rgba(0, 0, 0, 0.07) 0px 8px 16px, rgba(0, 0, 0, 0.07) 0px 16px 32px, rgba(0, 0, 0, 0.07) 0px 32px 64px;
+        }
+        #toggle{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transform: translate(125px,40px);
+            border-radius: 20px;
+            width: 26%;
+            background-color: rgb(121, 193, 228);
+            /* background-color: rgba(64, 122, 170, 0.895); */
+        }
+        #toggleMoon, #toggleSun{
+            border: none;
+            border-radius: 20px;
+            width: 5.5vh;
+            height: 3.7vh;
+            cursor: pointer;
+            transition: 0.9s;
+        }
+        #toggleSun{
+            background-color: rgba(182, 229, 246, 0.895);
+            /* background-color: rgba(64, 122, 170, 0.895); */
+            /* color: rgb(203, 203, 203); */
+            color: rgb(80, 80, 80);
+        }
+        #toggleMoon{
+            background-color: #02020200;
+            /* background-color: rgba(11, 56, 94, 0.895); */
+            /* color: rgb(203, 203, 203); */
+            color: rgb(80, 80, 80);
+        }
+        #content{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            
+        }
+        #displayOp, #displayAns{
+            width: 95%;
+            display: flex;
+            justify-content: flex-end;
+            align-items: flex-end;
+            height: 8vh;
+            font-weight: 500;
+            
+        }
+        #displayOp{
+            margin-top: 10vh;
+            font-size: 25px;
+            color: rgb(91, 91, 91);
+        }
+        #displayAns{
+            margin-bottom: 6vh;
+            font-size: 45px;
+            color: rgb(23, 55, 119);
+            /* color: rgb(102, 181, 237); */
+        }
+        #clear, #openBrac, #closeBrac, #divide,#one, #two, #three, #four, #five, #six, #seven, #eight, #nine, #add, #subtraction, #multiply, #divide, #zero, #doubleZero, #equalsTo, #dot{
+            background: #fefefe75;
+            border: none;
+            border-radius: 20px;
+            font-size: 22px;
+            cursor: pointer;
+            width: 8vh;
+            height: 7vh;
+            margin: 5px;
+            box-shadow: rgba(17, 17, 26, 0.1) 0px 4px 16px, rgba(17, 17, 26, 0.05) 0px 8px 32px;
+            color: whitesmoke;
+            
+        }
+        #clear{
+            background-color: rgba(255, 67, 114, 0.901);
+        }
+        #openBrac, #closeBrac,#one, #two, #three, #four, #five, #six, #seven, #eight, #nine,#zero, #doubleZero,#dot{
+            background-color: rgba(36, 156, 255, 0.881);
+        }
+        #add, #subtraction, #multiply, #divide{
+            background-color: rgba(255, 159, 50, 0.874);
+        }
+        #equalsTo{
+            background-color: rgba(9, 218, 19, 0.854);
+        }
+
+        .hoverBtn:hover{
+            background-color: #e0e0e0;
+            transform: scale(1.05);
+            transition: background-color 0.3s, transform 0.3s;
+        }
+    </style>
+</head>
+<body>
+    <div id="title">
+        <nav id="titleContent">Calculator App</nav>
+    </div>
+    <div id="container">
+        <div id="toggle">
+
+            <button id="toggleSun"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 24" width="24" height="24"  fill="none" >
+                <path d="M17 12C17 14.7614 14.7614 17 12 17C9.23858 17 7 14.7614 7 12C7 9.23858 9.23858 7 12 7C14.7614 7 17 9.23858 17 12Z" stroke="currentColor" stroke-width="1.5" />
+                <path d="M12 2C11.6227 2.33333 11.0945 3.2 12 4M12 20C12.3773 20.3333 12.9055 21.2 12 22M19.5 4.50271C18.9685 4.46982 17.9253 4.72293 18.0042 5.99847M5.49576 17.5C5.52865 18.0315 5.27555 19.0747 4 18.9958M5.00271 4.5C4.96979 5.03202 5.22315 6.0763 6.5 5.99729M18 17.5026C18.5315 17.4715 19.5747 17.7108 19.4958 18.9168M22 12C21.6667 11.6227 20.8 11.0945 20 12M4 11.5C3.66667 11.8773 2.8 12.4055 2 11.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" />
+            </svg></button>
+
+            <button id="toggleMoon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 -2 24 24" width="20" height="20"  fill="none">
+                <path d="M21.5 14.0784C20.3003 14.7189 18.9301 15.0821 17.4751 15.0821C12.7491 15.0821 8.91792 11.2509 8.91792 6.52485C8.91792 5.06986 9.28105 3.69968 9.92163 2.5C5.66765 3.49698 2.5 7.31513 2.5 11.8731C2.5 17.1899 6.8101 21.5 12.1269 21.5C16.6849 21.5 20.503 18.3324 21.5 14.0784Z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            </svg></button>
+
+        </div> 
+        <div id="displayOp"></div>
+        <div id="displayAns"></div>
+            <table id="content">
+                <tr>
+                   <td><button class="hoverBtn" id="clear">C</button></td> 
+                   <td><button class="hoverBtn" id="openBrac">(</button></td> 
+                   <td><button class="hoverBtn" id="closeBrac">)</button></td> 
+                   <td><button class="hoverBtn" id="divide">/</button></td> 
+                </tr>
+                <tr>
+                    <td><button class="hoverBtn" id="seven">7</button></td> 
+                    <td><button class="hoverBtn" id="eight">8</button></td> 
+                    <td><button class="hoverBtn" id="nine">9</button></td> 
+                    <td><button class="hoverBtn" id="multiply">x</button></td> 
+                 </tr>
+                 <tr>
+                    <td><button class="hoverBtn" id="four">4</button></td> 
+                    <td><button class="hoverBtn" id="five">5</button></td> 
+                    <td><button class="hoverBtn" id="six">6</button></td> 
+                    <td><button  class="hoverBtn" id="subtraction">-</button></td> 
+                 </tr>
+                 <tr>
+                    <td><button class="hoverBtn" id="one">1</button></td> 
+                    <td><button class="hoverBtn" id="two">2</button></td> 
+                    <td><button class="hoverBtn" id="three">3</button></td> 
+                    <td><button class="hoverBtn" id="add">+</button></td> 
+                 </tr>
+                 <tr>
+                    <td><button class="hoverBtn" id="zero">0</button></td> 
+                    <td><button class="hoverBtn" id="doubleZero">00</button></td> 
+                    <td><button class="hoverBtn" id="dot">.</button></td> 
+                    <td><button class="hoverBtn" id="equalsTo">=</button></td> 
+                 </tr>
+
+            </table>
+            
+       
+    </div>
+    <script src="Calculator.js"></script>
+</body>
+</html>
